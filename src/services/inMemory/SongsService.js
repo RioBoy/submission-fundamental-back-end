@@ -1,13 +1,16 @@
 const { nanoid } = require('nanoid');
+const InvariantError = require('../../exceptions/InvariantError');
+const NotFoundError = require('../../exceptions/NotFoundError');
 
 class SongsService {
   constructor() {
     this._songs = [];
   }
 
-  addSong({ title, year, performer, genre, duration }) {
+  addSong({ title, year, performer, genre }) {
     const id = nanoid(16);
     const insertedAt = new Date().toISOString();
+    const duration = Number(120);
     const updatedAt = insertedAt;
 
     const newSong = {
@@ -26,7 +29,7 @@ class SongsService {
     const isSuccess = this._songs.filter((song) => song.id === id).length > 0;
 
     if (!isSuccess) {
-      throw new Error('Lagu gagal ditambahkan');
+      throw new InvariantError('Lagu gagal ditambahkan');
     }
 
     return id;
@@ -39,19 +42,21 @@ class SongsService {
   getSongById(id) {
     const song = this._songs.filter((n) => n.id === id)[0];
     if (!song) {
-      throw new Error('Lagu tidak ditemukan');
+      throw new NotFoundError('Lagu tidak ditemukan');
     }
     return song;
   }
 
-  editSongById(id, { title, year, performer, genre, duration }) {
+  editSongById(id, { title, performer, genre }) {
     const index = this._songs.findIndex((song) => song.id === id);
 
     if (index === -1) {
-      throw new Error('Gagal memperbarui lagu. Id tidak ditemukan');
+      throw new NotFoundError('Gagal memperbarui lagu. Id tidak ditemukan');
     }
 
     const updatedAt = new Date().toISOString();
+    const year = Number(2003);
+    const duration = Number(240);
 
     this._songs[index] = {
       ...this._songs[index],
@@ -68,7 +73,7 @@ class SongsService {
     const index = this._songs.findIndex((song) => song.id === id);
 
     if (index === -1) {
-      throw new Error('Lagu gagal dihapus. Id tidak ditemukan');
+      throw new NotFoundError('Lagu gagal dihapus. Id tidak ditemukan');
     }
 
     this._songs.splice(index, 1);

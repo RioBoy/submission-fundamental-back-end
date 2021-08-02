@@ -1,6 +1,7 @@
 const Hapi = require('@hapi/hapi');
 const songs = require('./api/songs');
 const SongsService = require('./services/inMemory/SongsService');
+const SongsValidator = require('./validator/songs');
 
 const init = async () => {
   const songsService = new SongsService();
@@ -18,6 +19,7 @@ const init = async () => {
     plugin: songs,
     options: {
       service: songsService,
+      validator: SongsValidator,
     },
   });
 
