@@ -49,7 +49,7 @@ class SongsHandler {
         message: 'Maaf, terjadi kegagalan pada server kami.',
       });
       response.code(500);
-      console.log(error);
+      console.error(error);
       return response;
     }
   }
@@ -77,7 +77,7 @@ class SongsHandler {
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server kami.',
       });
-      response.code(5000);
+      response.code(500);
       console.error(error);
       return response;
     }
@@ -108,7 +108,7 @@ class SongsHandler {
         message: 'Maaf, terjadi kegagalan pada server kami.',
       });
       response.code(500);
-      console.log(error);
+      console.error(error);
       return response;
     }
   }
@@ -139,7 +139,7 @@ class SongsHandler {
         message: 'Maaf, terjadi kegagalan pada server kami.',
       });
       response.code(500);
-      console.log(error);
+      console.error(error);
       return response;
     }
   }
@@ -167,7 +167,7 @@ class SongsHandler {
         message: 'Maaf, terjadi kegagalan pada server kami.',
       });
       response.code(500);
-      console.log(error);
+      console.error(error);
       return response;
     }
   }
