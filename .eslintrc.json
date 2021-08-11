@@ -16,6 +16,7 @@
     "no-underscore-dangle": "off",
     "class-methods-use-this": "off",
     "arrow-parens": "off",
-    "camelcase": "off"
+    "camelcase": "off",
+    "newline-per-chained-call": "off"
   }
 }
